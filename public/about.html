@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Cookable</title>
+<meta name="description" content="Cookable turns the ingredients you already have into dishes you can cook tonight.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #1F2A24;
+    --ink-light: #2C3A32;
+    --turmeric: #E8A93A;
+    --chili: #C1432D;
+    --parchment: #F2EFE6;
+    --sage: #7C9885;
+    --sage-dim: #566B5D;
+    --line: rgba(242,239,230,0.08);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--ink);
+    color: var(--parchment);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.6;
+    padding: 0 20px;
+  }
+  a{ color:inherit; }
+  .container{ max-width: 960px; margin: 0 auto; }
+
+  /* ---------- top navigation (shared with the cooking page) ---------- */
+  .topnav{
+    position: sticky; top:0; z-index:10;
+    margin: 0 -20px; padding: 0 20px;
+    background: rgba(31,42,36,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width: 960px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    height: 64px;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-weight:600; font-size:22px;
+    text-decoration:none; letter-spacing:-0.01em;
+  }
+  .brand span{ color: var(--turmeric); }
+  .navlinks{ display:flex; align-items:center; gap:26px; }
+  .navlinks a{
+    text-decoration:none; font-size:14px; font-weight:500;
+    color: rgba(242,239,230,0.65); transition: color .15s;
+  }
+  .navlinks a:hover, .navlinks a.active{ color: var(--parchment); }
+  .navlinks a.navcta{
+    background: var(--turmeric); color: var(--ink); font-weight:600;
+    padding: 8px 16px; border-radius:999px;
+    transition: background .15s, transform .15s;
+  }
+  .navlinks a.navcta:hover{ background:#f0bb5c; transform: translateY(-1px); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding: 96px 0 72px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    letter-spacing:.12em; text-transform:uppercase;
+    color: var(--turmeric); margin-bottom:18px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size: clamp(38px, 7vw, 68px);
+    line-height:1.05; letter-spacing:-0.02em; max-width: 14ch;
+  }
+  h1 em{ font-style:italic; font-weight:400; color: var(--turmeric); }
+  .hero p.lead{
+    margin-top:24px; max-width: 540px;
+    font-size:18px; color: var(--sage); line-height:1.6;
+  }
+  .hero-actions{ margin-top:34px; display:flex; flex-wrap:wrap; gap:12px; }
+  .btn{
+    display:inline-block; text-decoration:none;
+    font-weight:600; font-size:15px;
+    padding: 14px 26px; border-radius:999px;
+    transition: transform .15s, background .15s, border-color .15s;
+  }
+  .btn-primary{ background: var(--turmeric); color: var(--ink); }
+  .btn-primary:hover{ background:#f0bb5c; transform: translateY(-2px); }
+  .btn-ghost{ border:1px solid rgba(242,239,230,0.25); color: var(--parchment); }
+  .btn-ghost:hover{ border-color: var(--turmeric); color: var(--turmeric); }
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid; grid-template-columns: repeat(3, 1fr);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .stat{ padding: 34px 10px; text-align:center; }
+  .stat + .stat{ border-left:1px solid var(--line); }
+  .stat-num{ font-family:'Fraunces', serif; font-size: clamp(30px,5vw,46px); font-weight:600; color: var(--turmeric); line-height:1; }
+  .stat-label{ margin-top:8px; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color: var(--sage); }
+
+  /* ---------- generic section ---------- */
+  section{ padding: 88px 0 0; }
+  .section-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:.12em; text-transform:uppercase;
+    color: var(--turmeric); margin-bottom:12px;
+  }
+  h2{
+    font-family:'Fraunces', serif; font-weight:600;
+    font-size: clamp(28px, 4.5vw, 40px); line-height:1.15; letter-spacing:-0.01em;
+    max-width: 20ch;
+  }
+  .section-sub{ margin-top:14px; max-width: 560px; color: var(--sage); font-size:16px; }
+
+  /* mission */
+  .mission{ display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items:start; }
+  .mission p{ color: rgba(242,239,230,0.8); font-size:17px; margin-bottom:18px; }
+  .mission p:last-child{ margin-bottom:0; }
+
+  /* steps */
+  .steps{ margin-top:40px; display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+  .step{
+    background: var(--ink-light); border:1px solid var(--line);
+    border-radius:16px; padding: 26px 24px;
+  }
+  .step-num{
+    width:36px; height:36px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--turmeric); color: var(--ink);
+    font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:14px;
+    margin-bottom:18px;
+  }
+  .step h3{ font-family:'Fraunces', serif; font-size:21px; font-weight:600; margin-bottom:8px; }
+  .step p{ color: var(--sage); font-size:15px; }
+
+  /* features */
+  .features{ margin-top:40px; display:grid; grid-template-columns: repeat(2, 1fr); gap:18px; }
+  .feature{
+    border:1px solid var(--line); border-radius:16px;
+    padding: 26px 26px 26px; position:relative; overflow:hidden;
+    background: linear-gradient(180deg, rgba(44,58,50,0.7), rgba(44,58,50,0.3));
+  }
+  .feature::before{
+    content:""; position:absolute; left:0; top:0; width:100%; height:3px;
+    background: var(--accent, var(--turmeric));
+  }
+  .feature:nth-child(2){ --accent: var(--sage); }
+  .feature:nth-child(3){ --accent: var(--chili); }
+  .feature:nth-child(4){ --accent: var(--turmeric); }
+  .feature-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color: var(--accent, var(--turmeric)); margin-bottom:10px; }
+  .feature h3{ font-family:'Fraunces', serif; font-size:21px; font-weight:600; margin-bottom:8px; }
+  .feature p{ color: rgba(242,239,230,0.7); font-size:15px; }
+
+  /* team */
+  .team{ margin-top:40px; display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+  .member{
+    background: var(--ink-light); border:1px solid var(--line);
+    border-radius:16px; padding: 28px 22px; text-align:center;
+  }
+  .avatar{
+    width:72px; height:72px; border-radius:50%; margin:0 auto 16px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--sage-dim); color: var(--parchment);
+    font-family:'Fraunces', serif; font-size:26px; font-weight:600;
+  }
+  .member h3{ font-family:'Fraunces', serif; font-size:19px; font-weight:600; }
+  .member .role{ margin-top:4px; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color: var(--turmeric); }
+  .member p{ margin-top:12px; font-size:14px; color: var(--sage); }
+
+  /* call to action band */
+  .cta{
+    margin-top: 96px; padding: 64px 28px; text-align:center;
+    border-radius: 24px; border:1px solid var(--line);
+    background:
+      radial-gradient(600px 220px at 50% 0%, rgba(232,169,58,0.16), transparent 70%),
+      var(--ink-light);
+  }
+  .cta h2{ max-width: 18ch; margin: 0 auto; }
+  .cta p{ margin: 14px auto 28px; max-width: 460px; color: var(--sage); }
+
+  /* footer */
+  footer{
+    margin-top: 80px; padding: 28px 0 48px;
+    border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px 30px;
+    font-size:13px; color: rgba(242,239,230,0.4);
+  }
+  footer .note{ max-width: 520px; }
+  footer a{ color: rgba(242,239,230,0.6); text-decoration:none; margin-left:18px; }
+  footer a:hover{ color: var(--turmeric); }
+
+  /* subtle reveal animation */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  @media (max-width: 760px){
+    .hero{ padding: 64px 0 52px; }
+    .mission, .steps, .features, .team{ grid-template-columns: 1fr; }
+    .mission{ gap: 20px; }
+    section{ padding-top: 64px; }
+    .navlinks{ gap:16px; }
+    .stat{ padding: 24px 4px; }
+  }
+  .install-btn{ background:transparent; border:1px solid rgba(242,239,230,0.3); color:var(--parchment);
+    font-family:inherit; font-size:13px; font-weight:500; padding:7px 14px; border-radius:999px; cursor:pointer; transition:border-color .15s,color .15s; }
+  .install-btn:hover{ border-color:var(--turmeric); color:var(--turmeric); }
+  .install-btn[hidden]{ display:none; }
+</style>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#1F2A24">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pantry">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/icons/icon-192.png">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="about.html">Cookable<span>.</span></a>
+    <div class="navlinks">
+      <button id="installBtn" class="install-btn" hidden>Install app</button>
+      <a href="about.html" class="active">About</a>
+      <a href="index.html" class="navcta">Start cooking</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">About Cookable</div>
+    <h1>Dinner starts with what's <em>already in your kitchen.</em></h1>
+    <p class="lead">Cookable looks at the ingredients you have, finds real recipes that fit, and tells you exactly what's missing, so you can stop wondering what to cook.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="index.html">Start cooking →</a>
+      <a class="btn btn-ghost" href="#how">See how it works</a>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="stat"><div class="stat-num">50,000+</div><div class="stat-label">Real recipes</div></div>
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">Cuisines</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Diet checks</div></div>
+  </div>
+
+  <!-- MISSION -->
+  <section id="mission">
+    <div class="mission reveal">
+      <div>
+        <div class="section-eyebrow">Why we built it</div>
+        <h2>Less "what's for dinner?" More "I can make that."</h2>
+      </div>
+      <div>
+        <p>We've all stood in front of an open fridge, sure there's nothing to eat, while a few good ingredients sat right there.</p>
+        <p>Cookable turns that moment around. Tell us what you have and we'll suggest dishes you can actually cook, point out the one or two things you're missing, and help you waste less food along the way.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="reveal">
+      <div class="section-eyebrow">How it works</div>
+      <h2>Three steps from pantry to plate</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3>Add what you have</h3>
+        <p>Type your ingredients one by one: chicken, garlic, rice, whatever's on hand.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <h3>See what you can cook</h3>
+        <p>We match you with real dishes and show how closely each one fits your kitchen.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">3</div>
+        <h3>Fill in the gaps</h3>
+        <p>Every dish lists what you already have and what you'd need to pick up, plus full step-by-step instructions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="reveal">
+      <div class="section-eyebrow">What you get</div>
+      <h2>Everything you need to decide, fast</h2>
+    </div>
+    <div class="features">
+      <div class="feature reveal">
+        <div class="feature-tag">Dishes</div>
+        <h3>Recipes that fit your kitchen</h3>
+        <p>The best matches come first, ranked by how many of the ingredients you already own.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-tag">Shopping list</div>
+        <h3>Know what's missing</h3>
+        <p>No more half-way through cooking surprises. See the exact items you'd need before you start.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-tag">Cuisine</div>
+        <h3>Find the flavour</h3>
+        <p>We tell you which cuisine your ingredients lean towards, and how sure we are.</p>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-tag">Diet</div>
+        <h3>Diet-friendly at a glance</h3>
+        <p>Quick checks for vegetarian, vegan, gluten-free and keto-friendly, right at the top of your results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="reveal">
+      <div class="section-eyebrow">The team</div>
+      <h2>Made by person who love food</h2>
+      <p class="section-sub">Cookable started as a project to solve a very real, very everyday problem.</p>
+    </div>
+    <div class="team">
+      <!-- EDIT ME: replace the initials, name, role and blurb below. Delete a card if you're a smaller team. -->
+      <div class="member reveal">
+        <div class="avatar">KV</div>
+        <h3>Krishika Vansh</h3>
+        <div class="role">ML engineer</div>
+        <p>I have developed this tool for easy food recipes.Hope you like it!</p>
+      </div>
+      
+
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <div class="cta reveal">
+    <h2>Hungry? Tell us what's in your pantry.</h2>
+    <p>It takes less than a minute to find tonight's dinner.</p>
+    <a class="btn btn-primary" href="index.html">Start cooking →</a>
+  </div>
+
+  <footer>
+    <div class="note">Diet labels are a quick guide based on ingredient names. If you have allergies, always check your ingredients and packaging.</div>
+    <div>
+      <a href="about.html">About</a>
+      <a href="index.html">Start cooking</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // gentle fade-in as sections scroll into view
+  const items = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    items.forEach(el => io.observe(el));
+  } else {
+    items.forEach(el => el.classList.add("in"));
+  }
+</script>
+<script src="/app.js"></script>
+</body>
+</html>

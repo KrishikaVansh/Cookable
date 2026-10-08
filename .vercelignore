@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.vercel/
+# raw datasets are big and not needed at runtime (trained .pkl files ARE needed)
+data/*.json
+data/*.csv

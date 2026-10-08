@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "{models,data}/**",
+      "excludeFiles": "data/*.json",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index" }
+  ]
+}
