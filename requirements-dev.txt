@@ -1,4 +1,2 @@
-numpy
-fastapi
+-r requirements.txt
 uvicorn[standard]
-pydantic

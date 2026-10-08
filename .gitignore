@@ -4,3 +4,5 @@ __pycache__/
 # raw datasets are big and not needed at runtime (trained .pkl files ARE needed)
 data/*.json
 data/*.csv
+.env
+requirements-dev.txt
